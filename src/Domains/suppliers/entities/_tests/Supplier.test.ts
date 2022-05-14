@@ -17,7 +17,7 @@ describe('Supplier entity', () => {
    *   though a non-mandatory field is missing,
    *   - Should create a Supplier object
    *   - Value from fields on a Supplier object can be changed with the
-   *     appropriate setter
+   *     appropriate setter, field id cannot be changed
    *
    * Supplier payload have some mandatory fields:
    * name, address, city, province, postalCode, phoneNumber
@@ -34,6 +34,7 @@ describe('Supplier entity', () => {
   it(`Should throw an error when instantiating with the required payload but 
     mandatory field is missing`, () => {
     const payload = {
+      id: 'supplier-37b27a8ff501',
       name: 'Anugrah Argon Medica. PT',
       address: 'Jl. Pinang-Kunciran No.31, RT.002/RW.007, Kunciran',
       city: 'Kota Tangerang',
@@ -48,6 +49,7 @@ describe('Supplier entity', () => {
   it(`Should throw an error when the required payload have a mandatory field 
     but the data type is not match with the schema`, () => {
     const payload = {
+      id: 'supplier-37b27a8ff501',
       name: 'Anugrah Argon Medica. PT',
       address: 'Jl. Pinang-Kunciran No.31, RT.002/RW.007, Kunciran',
       city: 'Kota Tangerang',
@@ -63,6 +65,7 @@ describe('Supplier entity', () => {
   it(`Should throw an error when the required payload have a non-mandatory field
     but the data type is not match with the schema`, () => {
     const payload = {
+      id: 'supplier-37b27a8ff501',
       name: 'Anugrah Argon Medica. PT',
       address: 'Jl. Pinang-Kunciran No.31, RT.002/RW.007, Kunciran',
       city: 'Kota Tangerang',
@@ -80,6 +83,7 @@ describe('Supplier entity', () => {
     even though a non-mandatory field is missing`, () => {
     let supplier: Supplier;
     const payload = {
+      id: 'supplier-37b27a8ff501',
       name: 'Anugrah Argon Medica. PT',
       address: 'Jl. Pinang-Kunciran No.31, RT.002/RW.007, Kunciran',
       city: 'Kota Tangerang',
@@ -93,6 +97,7 @@ describe('Supplier entity', () => {
     });
 
     it('Should create a Supplier object', () => {
+      expect(supplier.id).toEqual(payload.id);
       expect(supplier.name).toEqual(payload.name);
       expect(supplier.address.detail).toEqual(payload.address);
       expect(supplier.address.city).toEqual(payload.city);
@@ -111,8 +116,9 @@ describe('Supplier entity', () => {
     });
 
     it(`Value from fields on a Supplier object can be changed with the 
-      appropriate setter`, () => {
+      appropriate setter, field id cannot be changed`, () => {
       const newPayload = {
+        id: 'supplier-37b27a8ff502',
         name: 'PT. Anugerah Pharmindo Lestari',
         address: 'Tower 10th Floor Cowell Tower, Jl. Senen Raya No.135, RW.2',
         city: 'Kota Jakarta Pusat',
@@ -132,6 +138,13 @@ describe('Supplier entity', () => {
 
       expect(() => supplier.changeInfo(newPayload)).not.toThrowError();
 
+      expect(supplier.id).toEqual(payload.id);
+      expect(supplier.name).toEqual(newPayload.name);
+      expect(supplier.address.detail).toEqual(newPayload.address);
+      expect(supplier.address.city).toEqual(newPayload.city);
+      expect(supplier.address.province).toEqual(newPayload.province);
+      expect(supplier.address.postalCode).toEqual(newPayload.postalCode);
+      expect(supplier.phoneNumber).toEqual(newPayload.phoneNumber);
       expect(supplier.faxNumber).toEqual(newPayload.faxNumber);
       expect(supplier.email).toEqual(newPayload.email);
       expect(supplier.website).toEqual(newPayload.website);

@@ -6,6 +6,7 @@ import SchemaChecker from '../valueObjects/SchemaChecker';
 
 export default class Supplier {
   private _mandatoryFields: Record<string, any> = {
+    id: 'string',
     name: 'string',
     address: 'string',
     city: 'string',
@@ -26,6 +27,7 @@ export default class Supplier {
   };
   private _schemaChecker: SchemaChecker;
   private _className = 'SUPPLIER';
+  private _id: string;
   private _name: string;
   private _address: Address;
   private _phoneNumber: string;
@@ -40,6 +42,7 @@ export default class Supplier {
       new SchemaChecker(this._mandatoryFields, this._nonMandatoryFields);
     this._verifyPayload(payload);
     const {
+      id,
       name,
       address,
       city,
@@ -57,6 +60,7 @@ export default class Supplier {
       contactPersonPhoneNumber,
     } = payload;
 
+    this._id = id;
     this._name = name;
     this._address = new Address({
       detail: address,
@@ -143,6 +147,10 @@ export default class Supplier {
       name: contactPersonName,
       phoneNumber: contactPersonPhoneNumber,
     });
+  }
+
+  get id(): string {
+    return this._id;
   }
 
   get name(): string {
