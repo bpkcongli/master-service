@@ -8,7 +8,8 @@
     "tsc": "tsc",
     "start:dev": "ts-node-dev ./src/",
     "start": "tsc && node ./dist/index.js",
-    "lint": "eslint --ext .ts ./src"
+    "lint": "eslint --ext .ts ./src",
+    "test": "jest --watchAll --verbose --runInBand --coverage"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
