@@ -3,11 +3,11 @@ import SupplierFilterProps
   from '../../../Commons/contracts/SupplierFilterProps';
 
 interface SupplierRepository {
-  addSupplier(supplier: Supplier): void;
-  getAllSuppliers(props: SupplierFilterProps): any[];
-  getSpecificSupplier(id: string): any;
-  updateSpecificSupplier(id: string, payload: any): void;
-  deleteSpecificSupplier(id: string): void;
+  addSupplier(supplier: Supplier): Promise<void>;
+  getAllSuppliers(props: SupplierFilterProps): Promise<any[]>;
+  getSpecificSupplier(id: string): Promise<any>;
+  updateSpecificSupplier(id: string, payload: any): Promise<void>;
+  deleteSpecificSupplier(id: string): Promise<void>;
 }
 
 export default SupplierRepository;
