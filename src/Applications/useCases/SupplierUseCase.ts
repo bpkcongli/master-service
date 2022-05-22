@@ -1,4 +1,6 @@
 import SupplierValidator from '../validators/SupplierValidator';
+import ValidatorResult from '../../Commons/contracts/ValidatorResult';
+import BadRequestError from '../../Commons/exceptions/BadRequestError';
 import SupplierRepository
   from '../../Domains/suppliers/repositories/SupplierRepository';
 import Supplier from '../../Domains/suppliers/entities/Supplier';
@@ -18,12 +20,18 @@ export default class SupplierUseCase {
     this._idGenerator = idGenerator;
   }
 
-  addSupplier(payload: any) {
-    this._validator.validateAddSupplierPayload(payload);
+  async addSupplier(payload: any) {
+    const validationResult: ValidatorResult = this._validator
+        .validateAddSupplierPayload(payload);
+
+    if (validationResult.error) {
+      throw new BadRequestError(`ValidationError: ${validationResult.error}`);
+    }
+
     const supplier = new Supplier({
       id: `supplier-${this._idGenerator()}`,
       ...payload,
     });
-    this._repository.addSupplier(supplier);
+    await this._repository.addSupplier(supplier);
   }
 }

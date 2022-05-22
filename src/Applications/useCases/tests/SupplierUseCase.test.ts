@@ -23,7 +23,9 @@ describe('SupplierUseCase', () => {
     };
 
     const supplierValidator = {
-      validateAddSupplierPayload: jest.fn(),
+      validateAddSupplierPayload: jest.fn().mockImplementation(() => ({
+        value: payload,
+      })),
     };
 
     const supplierRepository = {
