@@ -5,6 +5,7 @@ import {PermissionACL, PermissionVerificatorProps}
 describe('PermissionVerificator', () => {
   /**
    * Test Cases:
+   * - Should throw an error if request url doesn't exist on permissionACL
    * - Should throw an error if request doesn't have an appropriate
    *   permission
    * - Should successfully validate access to specific endpoint if request have
@@ -137,6 +138,20 @@ describe('PermissionVerificator', () => {
     },
   ];
 
+  it(`Should throw an error if request url doesn't exist on
+    permissionACL`, () => {
+    const permissionVerificator = new PermissionVerificator(
+        permissionACL,
+        baseUrlShort,
+    );
+    expect(() => permissionVerificator.verify({
+      permissions: ['master.suppliers.list'],
+      relativeUrl: '/orders',
+      method: 'POST',
+      params: {},
+    })).toThrowError('Maaf, endpoint tidak ditemukan.');
+  });
+
   it(`Should throw an error if request doesn't have an appropriate
     permission`, () => {
     const permissionVerificator = new PermissionVerificator(
@@ -148,7 +163,7 @@ describe('PermissionVerificator', () => {
       relativeUrl: '/',
       method: 'POST',
       params: {},
-    })).toThrowError('PERMISSION_VALIDATOR.NO_PERMITTED');
+    })).toThrowError();
   });
 
   it(`Should successfully validate access to specific endpoint if request hav

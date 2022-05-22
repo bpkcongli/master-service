@@ -1,5 +1,7 @@
 import {PermissionVerificatorProps, PermissionACL}
   from '../../Commons/contracts/PermissionVerificatorProps';
+import ForbiddenError from '../../Commons/exceptions/ForbiddenError';
+import NotFoundError from '../../Commons/exceptions/NotFoundError';
 
 class PermissionVerificator {
   private _permissionACL: PermissionACL[];
@@ -17,8 +19,12 @@ class PermissionVerificator {
       return permission.endpoint === endpoint;
     });
 
-    if (!target || !permissions.includes(target.permission)) {
-      throw new Error('PERMISSION_VALIDATOR.NO_PERMITTED');
+    if (!target) {
+      throw new NotFoundError('Maaf, endpoint tidak ditemukan.');
+    }
+
+    if (!permissions.includes(target.permission)) {
+      throw new ForbiddenError(`Required permission: ${target.permission}`);
     }
   }
 
