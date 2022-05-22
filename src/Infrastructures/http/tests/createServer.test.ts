@@ -3,7 +3,8 @@ import jwt from 'jsonwebtoken';
 import {ACCESS_TOKEN_KEY, COOKIE_NAME} from '../../../Commons/config';
 import SupplierDO from '../../databases/mongodb/models/SupplierDO';
 import createServer from '../createServer';
-const api = supertest(createServer());
+import container from '../../container';
+const api = supertest(createServer(container));
 
 describe('HTTP Server', () => {
   /**

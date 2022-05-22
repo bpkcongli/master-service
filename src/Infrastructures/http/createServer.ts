@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import {Container} from 'instances-container';
 require('express-async-errors');
-import container from '../container';
 import {createConnection} from '../databases/mongodb/createConnection';
 import SupplierAPI from '../../Interfaces/http/api/suppliers';
 import Middleware from './middlewares';
@@ -11,7 +11,7 @@ import PermissionVerificator
   from '../../Applications/securities/PermissionVerificator';
 import SupplierPermissionACL from './permissionACLs/SupplierPermissionACL';
 
-const createServer = () => {
+const createServer = (container: Container) => {
   createConnection();
   const server = express();
   server.use(cors());
