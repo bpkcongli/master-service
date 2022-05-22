@@ -1,4 +1,4 @@
-import SchemaChecker from '../valueObjects/SchemaChecker';
+import SchemaChecker from '../commons/SchemaChecker';
 import ContactPerson from '../valueObjects/ContactPerson';
 
 interface AddressDTO {
