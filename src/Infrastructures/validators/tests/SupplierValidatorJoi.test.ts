@@ -63,8 +63,9 @@ describe('SupplierValidatorJoi', () => {
 
     expect(supplierValidatorJoi).toHaveProperty('validateAddSupplierPayload');
     badPayloads.forEach((badPayload) => {
-      expect(() => supplierValidatorJoi.validateAddSupplierPayload(badPayload))
-          .toThrowError();
+      const validationResult = supplierValidatorJoi
+          .validateAddSupplierPayload(badPayload);
+      expect(validationResult.error).toBeTruthy();
     });
   });
 });

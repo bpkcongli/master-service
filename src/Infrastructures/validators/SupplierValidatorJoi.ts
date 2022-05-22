@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import ValidatorResult from '../../Commons/contracts/ValidatorResult';
 import SupplierValidator
   from '../../Applications/validators/SupplierValidator';
 
@@ -25,12 +26,13 @@ export default class SupplierValidatorJoi implements SupplierValidator {
     contactPersonPhoneNumber: Joi.string().pattern(this._phoneNumberPattern),
   });
 
-  validateAddSupplierPayload(payload: any) {
+  validateAddSupplierPayload(payload: any): ValidatorResult {
     const validationResult = this._addSupplierPayloadSchema.validate(payload);
-
-    if (validationResult.error) {
-      throw new Error(validationResult.error.message);
-    }
+    return {
+      value: validationResult.value,
+      error: validationResult.error ?
+        validationResult.error.message : undefined,
+    };
   }
 
   validateUpdateSupplierPayload() {}
