@@ -5,7 +5,6 @@ import {customAlphabet} from 'nanoid';
 import SupplierRepositoryMongo from './repositories/SupplierRepositoryMongo';
 import SupplierValidatorJoi from './validators/SupplierValidatorJoi';
 import SupplierUseCase from '../Applications/useCases/SupplierUseCase';
-import TokenVerificatorJwt from './securities/TokenVerificatorJwt';
 
 const container = createContainer();
 container.register([
@@ -16,10 +15,6 @@ container.register([
   {
     key: 'SupplierValidator',
     Class: SupplierValidatorJoi,
-  },
-  {
-    key: 'TokenVerificator',
-    Class: TokenVerificatorJwt,
   },
 ]);
 

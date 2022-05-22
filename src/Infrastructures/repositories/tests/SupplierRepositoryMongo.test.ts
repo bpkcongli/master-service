@@ -30,7 +30,6 @@ describe('SupplierRepositoryMongo implementation', () => {
     await supplierRepositoryMongo.addSupplier(supplier);
 
     const savedSupplier = await SupplierDO.findOne({id: payload.id});
-    console.log(savedSupplier);
     expect(savedSupplier.id).toEqual(payload.id);
     expect(savedSupplier.name).toEqual(payload.name);
     expect(savedSupplier.address).toStrictEqual({

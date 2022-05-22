@@ -9,10 +9,12 @@ const MONGO_URI = NODE_ENV !== 'development' ?
     process.env.MONGO_URI_PROD : process.env.MONGO_URI_TEST :
   process.env.MONGO_URI_DEV;
 const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY;
+const COOKIE_NAME = process.env.COOKIE_NAME;
 
 export {
   NODE_ENV,
   PORT,
   MONGO_URI,
   ACCESS_TOKEN_KEY,
+  COOKIE_NAME,
 };
