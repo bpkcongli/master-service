@@ -1,4 +1,4 @@
-import SchemaChecker from '../commons/SchemaChecker';
+import SchemaChecker from '@conglicorp/schema-checker';
 
 export default class Address {
   private _mandatorySchema: Record<string, any> = {

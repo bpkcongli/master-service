@@ -1,8 +1,8 @@
+import SchemaChecker from '@conglicorp/schema-checker';
 import Address from '../valueObjects/Address';
 import Licenses from '../valueObjects/Licenses';
 import LicenseInformation from '../valueObjects/LicenseInformation';
 import ContactPerson from '../valueObjects/ContactPerson';
-import SchemaChecker from '../commons/SchemaChecker';
 
 export default class Supplier {
   private _mandatoryFields: Record<string, any> = {

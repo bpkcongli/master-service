@@ -12,9 +12,7 @@ class SupplierHandler {
 
   async postSupplierHandler(req: Request, res: Response) {
     const useCase = this._container.getInstance(SupplierUseCase.name);
-    console.log('handler before use case');
     await useCase.addSupplier(req.body);
-    console.log('handler after use case');
 
     return res.status(201).json({
       status: 'success',

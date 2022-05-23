@@ -1,5 +1,5 @@
+import SchemaChecker from '@conglicorp/schema-checker';
 import LicenseInformation from './LicenseInformation';
-import SchemaChecker from '../commons/SchemaChecker';
 
 export default class Licenses {
   private _nonMandatorySchema: Record<string, any> = {
