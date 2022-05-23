@@ -84,6 +84,19 @@ const supplierSchema = new mongoose.Schema({
       default: '',
     },
   },
+}, {
+  timestamps: {createdAt: 'createdAt', updatedAt: 'lastModified'},
+});
+
+supplierSchema.pre('save', (next) => {
+  (supplierSchema as any).createdAt = Date.now();
+  (supplierSchema as any).lastModified = Date.now();
+  next();
+});
+
+supplierSchema.pre('updateOne', (next) => {
+  (supplierSchema as any).lastModified = Date.now();
+  next();
 });
 
 supplierSchema.plugin(uniqueValidator);
