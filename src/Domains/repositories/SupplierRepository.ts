@@ -1,6 +1,6 @@
 import Supplier from '../entities/Supplier';
 import SupplierFilterProps
-  from '../../../Commons/contracts/SupplierFilterProps';
+  from '../../Commons/contracts/SupplierFilterProps';
 
 interface SupplierRepository {
   addSupplier(supplier: Supplier): Promise<void>;

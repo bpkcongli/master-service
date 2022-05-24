@@ -1,6 +1,6 @@
 import SupplierRepositoryMongo from '../SupplierRepositoryMongo';
 import {createConnection} from '../../databases/mongodb/createConnection';
-import Supplier from '../../../Domains/suppliers/entities/Supplier';
+import Supplier from '../../../Domains/entities/Supplier';
 import SupplierDO from '../../databases/mongodb/models/SupplierDO';
 
 describe('SupplierRepositoryMongo implementation', () => {

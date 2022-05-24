@@ -2,8 +2,8 @@ import SupplierValidator from '../validators/SupplierValidator';
 import ValidatorResult from '../../Commons/contracts/ValidatorResult';
 import BadRequestError from '../../Commons/exceptions/BadRequestError';
 import SupplierRepository
-  from '../../Domains/suppliers/repositories/SupplierRepository';
-import Supplier from '../../Domains/suppliers/entities/Supplier';
+  from '../../Domains/repositories/SupplierRepository';
+import Supplier from '../../Domains/entities/Supplier';
 
 export default class SupplierUseCase {
   private _validator: SupplierValidator;
